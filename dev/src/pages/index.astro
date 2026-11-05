@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Guestbook from '../components/Guestbook.jsx'; // <-- Tambahkan ini
+---
+
+<Layout title="Obedman | Fullstack Developer">
+	<div class="lg:flex lg:justify-between lg:gap-4">
+<!-- KIRI: Header / Bio statis -->
+		<header class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
+			<div class="flex flex-col items-center text-center">
+<!-- GAMBAR AVATAR MEMBAUR (Diperbesar ~30%) -->
+				<img 
+					src="/avatar.png" 
+					alt="Obedman" 
+					class="mb-6 w-44 h-44 md:w-52 md:h-52 rounded-2xl object-cover opacity-90 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500"
+					style="mask-image: linear-gradient(to bottom, black 60%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);"
+				/>
+
+				<h1 class="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
+					<a href="/">Obedman</a>
+				</h1>
+				<h2 class="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
+					Fullstack Software Engineer
+				</h2>
+				<p class="mt-4 max-w-xs mx-auto leading-normal text-slate-400">
+					Membangun antarmuka web modern dengan backend performa tinggi yang solid.
+				</p>
+			</div>
+		</header>
+		<!-- KANAN: Konten yang bisa di-scroll -->
+		<main id="content" class="pt-24 lg:w-1/2 lg:py-24">
+			
+			<!-- SECTION: ABOUT -->
+			<section id="about" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
+				<h3 class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:hidden mb-4">About</h3>
+				<p class="mb-4 text-slate-400 leading-relaxed">
+					Saya adalah seorang software engineer yang fokus membangun ekosistem digital dari hulu ke hilir. Berbekal pengalaman dengan <strong class="text-teal-300 font-medium">Node.js, Go, dan PHP Laravel</strong>, saya membangun arsitektur backend yang tahan banting dan efisien. 
+				</p>
+				<p class="text-slate-400 leading-relaxed">
+					Untuk antarmuka, saya meracik UI/UX modern dan responsif dengan <strong class="text-teal-300 font-medium">TypeScript dan Tailwind CSS</strong>, didukung oleh fondasi database menggunakan <strong class="text-teal-300 font-medium">PostgreSQL dan MySQL</strong>. Fokus utama saya adalah memberikan <i>performance</i> maksimal tanpa mengorbankan estetika.
+				</p>
+			</section>
+
+			<!-- SECTION: PROJECTS -->
+			<section id="projects" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
+				<h3 class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:hidden mb-4">Projects</h3>
+				
+				<!-- List Project (Gunakan group/list untuk efek fokus) -->
+				<ul class="group/list">
+					
+					<!-- Project 1 -->
+					<li class="mb-12 transition-all hover:!opacity-100 group-hover/list:opacity-50">
+						<div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:hover:bg-slate-800/50 rounded-md p-4 lg:-m-4">
+							<header class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2">2024</header>
+							<div class="z-10 sm:col-span-6">
+								<h3 class="font-medium leading-snug text-slate-200">
+									<a class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300" href="#" target="_blank">
+										<span>High-Performance Backend API <span class="inline-block transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span></span>
+									</a>
+								</h3>
+								<p class="mt-2 text-sm leading-normal text-slate-400">
+									Membangun REST API berkinerja tinggi menggunakan Golang dan PostgreSQL yang diekspos secara aman ke internet via Cloudflare Tunnels.
+								</p>
+								<ul class="mt-2 flex flex-wrap" aria-label="Technologies used">
+									<li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">Go</div></li>
+									<li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">PostgreSQL</div></li>
+									<li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">Ubuntu Server</div></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+
+					<!-- Project 2 -->
+					<li class="mb-12 transition-all hover:!opacity-100 group-hover/list:opacity-50">
+						<div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:hover:bg-slate-800/50 rounded-md p-4 lg:-m-4">
+							<header class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2">2023</header>
+							<div class="z-10 sm:col-span-6">
+								<h3 class="font-medium leading-snug text-slate-200">
+									<a class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300" href="#" target="_blank">
+										<span>Fullstack Web Management <span class="inline-block transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span></span>
+									</a>
+								</h3>
+								<p class="mt-2 text-sm leading-normal text-slate-400">
+									Mengembangkan dashboard manajemen komprehensif menggunakan ekosistem Laravel dan Node.js dengan antarmuka yang bersih dan interaktif.
+								</p>
+								<ul class="mt-2 flex flex-wrap" aria-label="Technologies used">
+									<li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">Laravel</div></li>
+									<li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">Node.js</div></li>
+									<li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">Tailwind CSS</div></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+
+				</ul>
+			</section>
+			<!-- SECTION: GUESTBOOK -->
+			<section id="guestbook" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
+				<h3 class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:hidden mb-4">Buku Tamu</h3>
+				<p class="text-slate-400 leading-relaxed mb-4">
+					Tinggalkan pesan di sini.
+				</p>
+				
+				<!-- client:load sangat penting agar interaktivitas React berjalan di Astro -->
+				<Guestbook client:load />
+			</section>
+		</main>
+	</div>
+</Layout>

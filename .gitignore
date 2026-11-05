@@ -1,0 +1,18 @@
+# Node.js & Astro
+node_modules/
+dev/node_modules/
+dev/dist/
+dev/.astro/
+
+# Go Executables & Environment
+*.exe
+api/*.exe
+api/main
+.env
+
+# Private 
+docs/
+
+# OS Files
+.DS_Store
+Thumbs.db
