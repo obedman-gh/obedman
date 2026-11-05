@@ -12,6 +12,7 @@ api/main
 
 # Private 
 docs/
+avatars/
 
 # OS Files
 .DS_Store
