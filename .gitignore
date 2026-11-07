@@ -22,6 +22,7 @@ dev/playwright-report/
 docs/
 avatars/
 backups/
+sounds/
 
 # OS Files
 .DS_Store
