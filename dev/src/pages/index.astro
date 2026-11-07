@@ -1,109 +1,364 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Guestbook from '../components/Guestbook.jsx'; // <-- Tambahkan ini
+import Guestbook from '../components/Guestbook.jsx';
 ---
 
-<Layout title="Obedman | Fullstack Developer">
+<Layout title="Obed Erwin Manambe | Fullstack Software Engineer">
 	<div class="lg:flex lg:justify-between lg:gap-4">
-<!-- KIRI: Header / Bio statis -->
+		
+		<!-- KIRI: Header / Bio Statis -->
 		<header class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
-			<div class="flex flex-col items-center text-center">
-<!-- GAMBAR AVATAR MEMBAUR (Diperbesar ~30%) -->
+			<div class="flex flex-col items-center text-center lg:items-start lg:text-left">
+				
+				<!-- Avatar dengan effect fade-bottom & hover reveal -->
 				<img 
 					src="/avatar.png" 
-					alt="Obedman" 
-					class="mb-6 w-44 h-44 md:w-52 md:h-52 rounded-2xl object-cover opacity-90 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500"
-					style="mask-image: linear-gradient(to bottom, black 60%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);"
+					alt="Obed Erwin Manambe" 
+					class="mb-6 w-44 h-44 md:w-52 md:h-52 rounded-2xl object-cover opacity-90 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500 shadow-2xl"
+					style="mask-image: linear-gradient(to bottom, black 65%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);"
 				/>
 
-				<h1 class="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
-					<a href="/">Obedman</a>
+				<h1 class="text-4xl font-bold tracking-tight text-slate-100 sm:text-5xl">
+					<a href="/">Obed Erwin Manambe</a>
 				</h1>
-				<h2 class="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
+				<h2 class="mt-3 text-lg font-medium tracking-tight text-teal-300 sm:text-xl">
 					Fullstack Software Engineer
 				</h2>
-				<p class="mt-4 max-w-xs mx-auto leading-normal text-slate-400">
-					Membangun antarmuka web modern dengan backend performa tinggi yang solid.
+				<p class="mt-1 text-sm font-normal text-slate-400">
+					Head of IT Division — Dept. of Communication & Informatics, Talaud Islands Regency
 				</p>
+				<p class="mt-4 max-w-xs leading-normal text-slate-400 text-sm">
+					Building high-availability public services, field operation PWAs, and high-performance backend systems on Linux infrastructure.
+				</p>
+
+				<!-- Quick Tech Badges -->
+				<div class="mt-6 flex flex-wrap justify-center lg:justify-start gap-1.5 max-w-xs">
+					<span class="rounded bg-slate-800/80 px-2.5 py-1 text-xs font-mono text-teal-300">TypeScript</span>
+					<span class="rounded bg-slate-800/80 px-2.5 py-1 text-xs font-mono text-teal-300">Go</span>
+					<span class="rounded bg-slate-800/80 px-2.5 py-1 text-xs font-mono text-teal-300">Next.js</span>
+					<span class="rounded bg-slate-800/80 px-2.5 py-1 text-xs font-mono text-teal-300">Laravel</span>
+					<span class="rounded bg-slate-800/80 px-2.5 py-1 text-xs font-mono text-teal-300">PostgreSQL</span>
+					<span class="rounded bg-slate-800/80 px-2.5 py-1 text-xs font-mono text-teal-300">Ubuntu Server</span>
+				</div>
+			</div>
+
+			<!-- Navigasi / Contact quick links -->
+			<div class="mt-8 lg:mt-0 flex gap-4 justify-center lg:justify-start text-xs font-mono text-slate-400">
+				<a href="mailto:obed.manambe@gmail.com" class="hover:text-teal-300 transition-colors">obed.manambe@gmail.com</a>
+				<span>•</span>
+				<a href="https://github.com/obedman-gh" target="_blank" class="hover:text-teal-300 transition-colors">GitHub</a>
+				<span>•</span>
+				<a href="https://obedman.my.id" class="hover:text-teal-300 transition-colors">obedman.my.id</a>
 			</div>
 		</header>
-		<!-- KANAN: Konten yang bisa di-scroll -->
-		<main id="content" class="pt-24 lg:w-1/2 lg:py-24">
+
+		<!-- KANAN: Content Scrollable -->
+		<main id="content" class="pt-16 lg:w-1/2 lg:py-24">
 			
 			<!-- SECTION: ABOUT -->
 			<section id="about" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
-				<h3 class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:hidden mb-4">About</h3>
-				<p class="mb-4 text-slate-400 leading-relaxed">
-					Saya adalah seorang software engineer yang fokus membangun ekosistem digital dari hulu ke hilir. Berbekal pengalaman dengan <strong class="text-teal-300 font-medium">Node.js, Go, dan PHP Laravel</strong>, saya membangun arsitektur backend yang tahan banting dan efisien. 
+				<h3 class="text-xs font-mono uppercase tracking-widest text-teal-300 mb-6 flex items-center gap-2">
+					<span class="w-2 h-2 rounded-full bg-teal-400 inline-block"></span> About Me
+				</h3>
+				<p class="mb-4 text-slate-400 leading-relaxed text-sm sm:text-base">
+					Saya adalah seorang <strong class="text-slate-200 font-medium">Hands-on Fullstack Software Engineer</strong> dan Kepala Bidang Teknologi Informasi di Dinas Komunikasi dan Informatika Kabupaten Kepulauan Talaud. Saya berfokus membangun aplikasi layanan publik berbasis web, sistem manajemen dokumen daerah, dan aplikasi survei lapangan.
 				</p>
-				<p class="text-slate-400 leading-relaxed">
-					Untuk antarmuka, saya meracik UI/UX modern dan responsif dengan <strong class="text-teal-300 font-medium">TypeScript dan Tailwind CSS</strong>, didukung oleh fondasi database menggunakan <strong class="text-teal-300 font-medium">PostgreSQL dan MySQL</strong>. Fokus utama saya adalah memberikan <i>performance</i> maksimal tanpa mengorbankan estetika.
+				<p class="mb-4 text-slate-400 leading-relaxed text-sm sm:text-base">
+					Perjalanan rekayasa perangkat lunak saya dimulai dari era aplikasi desktop berbasis database <strong class="text-slate-200 font-medium font-mono">dBASE, FoxBASE, dan CA-Clipper</strong>, hingga kini aktif merancang ekosistem modern menggunakan <strong class="text-teal-300 font-medium">Go, Node.js, PHP Laravel, Next.js, Astro, dan TypeScript</strong>.
 				</p>
+				<p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+					Selain penulisan kode *frontend* & *backend*, saya bertanggung jawab langsung atas konfigurasi infrastruktur <strong class="text-slate-200 font-medium">Ubuntu Server, Nginx, Caddy, Cloudflare Tunnel, Docker, systemd</strong>, hingga pengujian berkala untuk strategi *backup & restore* basis data PostgreSQL dan MySQL.
+				</p>
+
+				<!-- Comprehensive Skills Matrix -->
+				<div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+					<div class="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800">
+						<div class="text-slate-300 font-bold mb-2 text-teal-300">Frontend Stack</div>
+						<div class="text-slate-400 leading-relaxed">TypeScript, JavaScript, React, Next.js, Astro, Tailwind CSS, Vite, HTML/CSS</div>
+					</div>
+					<div class="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800">
+						<div class="text-slate-300 font-bold mb-2 text-teal-300">Backend & API</div>
+						<div class="text-slate-400 leading-relaxed">Go (Golang), Node.js, PHP, Laravel, RESTful APIs, Auth & RBAC</div>
+					</div>
+					<div class="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800">
+						<div class="text-slate-300 font-bold mb-2 text-teal-300">Database Engine</div>
+						<div class="text-slate-400 leading-relaxed">PostgreSQL, MySQL, MariaDB, SQLite, SQL Optimization, Backup & Recovery</div>
+					</div>
+					<div class="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800">
+						<div class="text-slate-300 font-bold mb-2 text-teal-300">DevOps & Linux</div>
+						<div class="text-slate-400 leading-relaxed">Ubuntu Server, Nginx, Caddy, Cloudflare Tunnels, Docker, systemd, Git</div>
+					</div>
+				</div>
 			</section>
 
-			<!-- SECTION: PROJECTS -->
-			<section id="projects" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
-				<h3 class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:hidden mb-4">Projects</h3>
-				
-				<!-- List Project (Gunakan group/list untuk efek fokus) -->
-				<ul class="group/list">
+			<!-- SECTION: APP SHOWCASE & SCREENSHOTS (NEW) -->
+			<section id="showcase" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
+				<h3 class="text-xs font-mono uppercase tracking-widest text-teal-300 mb-2 flex items-center gap-2">
+					<span class="w-2 h-2 rounded-full bg-teal-400 inline-block"></span> App Screenshots & Live Visuals
+				</h3>
+				<p class="text-slate-400 text-xs mb-8">
+					Tampilan visual langsung dari sistem operasional pemerintah daerah dan aplikasi survei lapangan.
+				</p>
+
+				<div class="grid grid-cols-1 gap-6">
 					
-					<!-- Project 1 -->
-					<li class="mb-12 transition-all hover:!opacity-100 group-hover/list:opacity-50">
-						<div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:hover:bg-slate-800/50 rounded-md p-4 lg:-m-4">
-							<header class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2">2024</header>
+					<!-- Screenshot Card 1: JDIH Talaud -->
+					<div class="group relative rounded-xl overflow-hidden bg-slate-900/70 border border-slate-800 hover:border-teal-500/50 transition-all duration-300">
+						<div class="aspect-video w-full overflow-hidden bg-slate-950 relative">
+							<img 
+								src="/screenshots/jdih-talaud.png" 
+								alt="JDIH Talaud Application Interface" 
+								class="w-full h-full object-cover object-top opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+								data-fallback="https://placehold.co/800x450/0f172a/94a3b8?text=JDIH+Talaud+Portal"
+							/>
+							<div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
+						</div>
+						<div class="p-5">
+							<div class="flex items-center justify-between mb-2">
+								<h4 class="font-semibold text-slate-200 group-hover:text-teal-300 transition-colors">JDIH Talaud</h4>
+								<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-teal-400/10 text-teal-300">Legal Document Portal</span>
+							</div>
+							<p class="text-xs text-slate-400 leading-relaxed">
+								Portal publik produk hukum daerah Kabupaten Kepulauan Talaud dilengkapi pencarian cepat dan alur kerja verifikasi publikasi dokumen.
+							</p>
+						</div>
+					</div>
+
+					<!-- Screenshot Card 2: SIPORODISA -->
+					<div class="group relative rounded-xl overflow-hidden bg-slate-900/70 border border-slate-800 hover:border-teal-500/50 transition-all duration-300">
+						<div class="aspect-video w-full overflow-hidden bg-slate-950 relative">
+							<img 
+								src="/screenshots/siporodisa.png" 
+								alt="SIPORODISA Application Interface" 
+								class="w-full h-full object-cover object-top opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+								data-fallback="https://placehold.co/800x450/0f172a/94a3b8?text=SIPORODISA+Data+Catalog"
+							/>
+							<div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
+						</div>
+						<div class="p-5">
+							<div class="flex items-center justify-between mb-2">
+								<h4 class="font-semibold text-slate-200 group-hover:text-teal-300 transition-colors">SIPORODISA</h4>
+								<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-teal-400/10 text-teal-300">Regional Data Catalog</span>
+							</div>
+							<p class="text-xs text-slate-400 leading-relaxed">
+								Katalog data spasial dan publikasi PDF statistik regional Talaud dengan mode ganda (Real & Demo mode).
+							</p>
+						</div>
+					</div>
+
+					<!-- Screenshot Card 3: TALACOS -->
+					<div class="group relative rounded-xl overflow-hidden bg-slate-900/70 border border-slate-800 hover:border-teal-500/50 transition-all duration-300">
+						<div class="aspect-video w-full overflow-hidden bg-slate-950 relative">
+							<img 
+								src="/screenshots/talacos.png" 
+								alt="TALACOS Tourism Portal" 
+								class="w-full h-full object-cover object-top opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+								data-fallback="https://placehold.co/800x450/0f172a/94a3b8?text=TALACOS+Tourism+Portal"
+							/>
+							<div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
+						</div>
+						<div class="p-5">
+							<div class="flex items-center justify-between mb-2">
+								<h4 class="font-semibold text-slate-200 group-hover:text-teal-300 transition-colors">TALACOS</h4>
+								<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-teal-400/10 text-teal-300">Tourism & Culture Portal</span>
+							</div>
+							<p class="text-xs text-slate-400 leading-relaxed">
+								Portal pariwisata dan kebudayaan daerah dengan peta interaktif pencarian destinasi wisata dan perencanaan perjalanan.
+							</p>
+						</div>
+					</div>
+
+					<!-- Screenshot Card 4: LAMT -->
+					<div class="group relative rounded-xl overflow-hidden bg-slate-900/70 border border-slate-800 hover:border-teal-500/50 transition-all duration-300">
+						<div class="aspect-video w-full overflow-hidden bg-slate-950 relative">
+							<img 
+								src="/screenshots/lamt.png" 
+								alt="LAMT Land Survey App" 
+								class="w-full h-full object-cover object-top opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+								data-fallback="https://placehold.co/800x450/0f172a/94a3b8?text=LAMT+Field+Survey+PWA"
+							/>
+							<div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
+						</div>
+						<div class="p-5">
+							<div class="flex items-center justify-between mb-2">
+								<h4 class="font-semibold text-slate-200 group-hover:text-teal-300 transition-colors">LAMT (Land Survey PWA)</h4>
+								<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-teal-400/10 text-teal-300">Offline-First Field PWA</span>
+							</div>
+							<p class="text-xs text-slate-400 leading-relaxed">
+								Aplikasi pengukuran lahan offline-first untuk titik koordinat batas lahan di lapangan dengan sinkronisasi data otomatis.
+							</p>
+						</div>
+					</div>
+
+					<!-- Screenshot Card 5: Nexus Pemdi -->
+					<div class="group relative rounded-xl overflow-hidden bg-slate-900/70 border border-slate-800 hover:border-teal-500/50 transition-all duration-300">
+						<div class="aspect-video w-full overflow-hidden bg-slate-950 relative">
+							<img 
+								src="/screenshots/nexus-pemdi.png" 
+								alt="Nexus Pemdi Talaud Map" 
+								class="w-full h-full object-cover object-top opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+								data-fallback="https://placehold.co/800x450/0f172a/94a3b8?text=Nexus+Pemdi+Regulation+Map"
+							/>
+							<div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
+						</div>
+						<div class="p-5">
+							<div class="flex items-center justify-between mb-2">
+								<h4 class="font-semibold text-slate-200 group-hover:text-teal-300 transition-colors">Nexus Pemdi Talaud</h4>
+								<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-teal-400/10 text-teal-300">Interactive Regulation Map</span>
+							</div>
+							<p class="text-xs text-slate-400 leading-relaxed">
+								Visualisasi pemetaan interaktif keterhubungan ekosistem regulasi dan kebijakan penyelenggaraan pemerintah digital.
+							</p>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+			<!-- SECTION: SELECTED PROJECTS LIST -->
+			<section id="projects" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
+				<h3 class="text-xs font-mono uppercase tracking-widest text-teal-300 mb-6 flex items-center gap-2">
+					<span class="w-2 h-2 rounded-full bg-teal-400 inline-block"></span> Selected Engineering Projects
+				</h3>
+				
+				<ul class="group/list space-y-8">
+					
+					<!-- Project: JDIH Talaud -->
+					<li class="transition-all hover:!opacity-100 group-hover/list:opacity-60">
+						<div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 rounded-lg p-4 hover:bg-slate-900/60 border border-transparent hover:border-slate-800">
+							<header class="z-10 mb-2 mt-1 text-xs font-mono text-slate-500 sm:col-span-2">2024 - Active</header>
 							<div class="z-10 sm:col-span-6">
-								<h3 class="font-medium leading-snug text-slate-200">
-									<a class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300" href="#" target="_blank">
-										<span>High-Performance Backend API <span class="inline-block transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span></span>
-									</a>
-								</h3>
-								<p class="mt-2 text-sm leading-normal text-slate-400">
-									Membangun REST API berkinerja tinggi menggunakan Golang dan PostgreSQL yang diekspos secara aman ke internet via Cloudflare Tunnels.
+								<h4 class="font-medium leading-snug text-slate-200 group-hover:text-teal-300 transition-colors">
+									JDIH Talaud — Legal Document Portal ↗
+								</h4>
+								<p class="mt-2 text-xs leading-relaxed text-slate-400">
+									Portal publik penelusuran dan penerbitan dokumen hukum daerah. Dilengkapi sistem pencarian parametrik cepat serta alur kerja *publish/withdraw* dokumen.
 								</p>
-								<ul class="mt-2 flex flex-wrap" aria-label="Technologies used">
-									<li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">Go</div></li>
-									<li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">PostgreSQL</div></li>
-									<li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">Ubuntu Server</div></li>
-								</ul>
+								<div class="mt-3 flex flex-wrap gap-1.5">
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">Next.js</span>
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">PostgreSQL</span>
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">TypeScript</span>
+								</div>
 							</div>
 						</div>
 					</li>
 
-					<!-- Project 2 -->
-					<li class="mb-12 transition-all hover:!opacity-100 group-hover/list:opacity-50">
-						<div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:hover:bg-slate-800/50 rounded-md p-4 lg:-m-4">
-							<header class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2">2023</header>
+					<!-- Project: SIPORODISA -->
+					<li class="transition-all hover:!opacity-100 group-hover/list:opacity-60">
+						<div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 rounded-lg p-4 hover:bg-slate-900/60 border border-transparent hover:border-slate-800">
+							<header class="z-10 mb-2 mt-1 text-xs font-mono text-slate-500 sm:col-span-2">2024</header>
 							<div class="z-10 sm:col-span-6">
-								<h3 class="font-medium leading-snug text-slate-200">
-									<a class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300" href="#" target="_blank">
-										<span>Fullstack Web Management <span class="inline-block transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span></span>
-									</a>
-								</h3>
-								<p class="mt-2 text-sm leading-normal text-slate-400">
-									Mengembangkan dashboard manajemen komprehensif menggunakan ekosistem Laravel dan Node.js dengan antarmuka yang bersih dan interaktif.
+								<h4 class="font-medium leading-snug text-slate-200 group-hover:text-teal-300 transition-colors">
+									SIPORODISA — Regional Data Catalog ↗
+								</h4>
+								<p class="mt-2 text-xs leading-relaxed text-slate-400">
+									Katalog data daerah dan alur publikasi dokumen PDF statistik regional. Memiliki arsitektur mode terpisah antara *real production* dan *demo mode*.
 								</p>
-								<ul class="mt-2 flex flex-wrap" aria-label="Technologies used">
-									<li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">Laravel</div></li>
-									<li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">Node.js</div></li>
-									<li class="mr-1.5 mt-2"><div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">Tailwind CSS</div></li>
-								</ul>
+								<div class="mt-3 flex flex-wrap gap-1.5">
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">Next.js</span>
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">PostgreSQL</span>
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">Tailwind CSS</span>
+								</div>
+							</div>
+						</div>
+					</li>
+
+					<!-- Project: TALACOS -->
+					<li class="transition-all hover:!opacity-100 group-hover/list:opacity-60">
+						<div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 rounded-lg p-4 hover:bg-slate-900/60 border border-transparent hover:border-slate-800">
+							<header class="z-10 mb-2 mt-1 text-xs font-mono text-slate-500 sm:col-span-2">2024</header>
+							<div class="z-10 sm:col-span-6">
+								<h4 class="font-medium leading-snug text-slate-200 group-hover:text-teal-300 transition-colors">
+									TALACOS — Tourism & Culture Portal ↗
+								</h4>
+								<p class="mt-2 text-xs leading-relaxed text-slate-400">
+									Portal informasi pariwisata dan kebudayaan daerah dengan modul ekplorasi destinasi wisata, penandaan peta lokasi, serta fitur perencanaan rute perjalanan.
+								</p>
+								<div class="mt-3 flex flex-wrap gap-1.5">
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">Next.js</span>
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">React</span>
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">REST API</span>
+								</div>
+							</div>
+						</div>
+					</li>
+
+					<!-- Project: LAMT -->
+					<li class="transition-all hover:!opacity-100 group-hover/list:opacity-60">
+						<div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 rounded-lg p-4 hover:bg-slate-900/60 border border-transparent hover:border-slate-800">
+							<header class="z-10 mb-2 mt-1 text-xs font-mono text-slate-500 sm:col-span-2">2023 - 2024</header>
+							<div class="z-10 sm:col-span-6">
+								<h4 class="font-medium leading-snug text-slate-200 group-hover:text-teal-300 transition-colors">
+									LAMT — Offline-First Land Survey PWA ↗
+								</h4>
+								<p class="mt-2 text-xs leading-relaxed text-slate-400">
+									Progressive Web App (PWA) pengukuran lahan *offline-first*. Mampu merekam titik GPS lokasi lahan tanpa koneksi internet dan melakukan sinkronisasi otomatis saat *online*.
+								</p>
+								<div class="mt-3 flex flex-wrap gap-1.5">
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">TypeScript</span>
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">Node.js</span>
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">SQLite</span>
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">PWA</span>
+								</div>
+							</div>
+						</div>
+					</li>
+
+					<!-- Project: SIGAP Talaud -->
+					<li class="transition-all hover:!opacity-100 group-hover/list:opacity-60">
+						<div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 rounded-lg p-4 hover:bg-slate-900/60 border border-transparent hover:border-slate-800">
+							<header class="z-10 mb-2 mt-1 text-xs font-mono text-slate-500 sm:col-span-2">2023</header>
+							<div class="z-10 sm:col-span-6">
+								<h4 class="font-medium leading-snug text-slate-200 group-hover:text-teal-300 transition-colors">
+									SIGAP Talaud — Permit & Registration Portal ↗
+								</h4>
+								<p class="mt-2 text-xs leading-relaxed text-slate-400">
+									Sistem informasi perizinan dan pendaftaran publik berbasis dashboard administratif tingkat kabupaten.
+								</p>
+								<div class="mt-3 flex flex-wrap gap-1.5">
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">PHP</span>
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">Laravel</span>
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">MySQL</span>
+								</div>
+							</div>
+						</div>
+					</li>
+
+					<!-- Existing Project: Go API & Microservices -->
+					<li class="transition-all hover:!opacity-100 group-hover/list:opacity-60">
+						<div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 rounded-lg p-4 hover:bg-slate-900/60 border border-transparent hover:border-slate-800">
+							<header class="z-10 mb-2 mt-1 text-xs font-mono text-slate-500 sm:col-span-2">2024</header>
+							<div class="z-10 sm:col-span-6">
+								<h4 class="font-medium leading-snug text-slate-200 group-hover:text-teal-300 transition-colors">
+									High-Performance Go REST API & Infrastructure ↗
+								</h4>
+								<p class="mt-2 text-xs leading-relaxed text-slate-400">
+									Layanan API berkinerja tinggi menggunakan Go (Fiber v2) dan PostgreSQL yang berjalan di lingkungan Ubuntu Server & Cloudflare Tunnels.
+								</p>
+								<div class="mt-3 flex flex-wrap gap-1.5">
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">Go (Golang)</span>
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">PostgreSQL</span>
+									<span class="rounded-full bg-teal-400/10 px-2.5 py-0.5 text-[11px] font-mono text-teal-300">Cloudflare Tunnel</span>
+								</div>
 							</div>
 						</div>
 					</li>
 
 				</ul>
 			</section>
+
 			<!-- SECTION: GUESTBOOK -->
 			<section id="guestbook" class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
-				<h3 class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:hidden mb-4">Buku Tamu</h3>
-				<p class="text-slate-400 leading-relaxed mb-4">
-					Tinggalkan pesan di sini.
+				<h3 class="text-xs font-mono uppercase tracking-widest text-teal-300 mb-2 flex items-center gap-2">
+					<span class="w-2 h-2 rounded-full bg-teal-400 inline-block"></span> Guestbook & Live Backend Test
+				</h3>
+				<p class="text-slate-400 text-xs mb-4">
+					Tinggalkan pesan di sini. Data dikirim langsung ke API Go dan tersimpan di PostgreSQL Ubuntu Server.
 				</p>
 				
-				<!-- client:load sangat penting agar interaktivitas React berjalan di Astro -->
 				<Guestbook client:load />
 			</section>
+
 		</main>
 	</div>
 </Layout>

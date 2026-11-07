@@ -1,0 +1,12 @@
+title = "Obedman secret rules"
+[extend]
+useDefault = true
+
+[[rules]]
+id = "libpq-password"
+description = "Explicit PostgreSQL password including low entropy values"
+regex = '''(?i)\bpassword\s*=\s*["']?([^\s"'<>]+)'''
+secretGroup = 1
+[[rules.allowlists]]
+regexTarget = "secret"
+regexes = ['''^CHANGE_ME$''', '''^REDACTED$''', '''^PLACEHOLDER$''']

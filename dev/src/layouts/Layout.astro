@@ -29,6 +29,15 @@ const { title } = Astro.props;
 
 		<!-- Script untuk menggerakkan Spotlight -->
 		<script>
+			// Registered listeners keep image fallbacks working under a CSP without inline handlers.
+			document.querySelectorAll<HTMLImageElement>('img[data-fallback]').forEach((image) => {
+				const fallback = () => {
+					const source = image.dataset.fallback;
+					if (source) { delete image.dataset.fallback; image.src = source; }
+				};
+				image.addEventListener('error', fallback, { once: true });
+				if (image.complete && image.naturalWidth === 0) fallback();
+			});
 			const spotlight = document.getElementById('spotlight');
 			window.addEventListener('mousemove', (e) => {
 				if (spotlight) {

@@ -9,10 +9,19 @@ dev/.astro/
 api/*.exe
 api/main
 .env
+.env.*
+!.env.example
+.local/
+coverage.out
+api/obedman-api
+*.dump
+dev/test-results/
+dev/playwright-report/
 
 # Private 
 docs/
 avatars/
+backups/
 
 # OS Files
 .DS_Store

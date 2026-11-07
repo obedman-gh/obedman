@@ -1,72 +1,97 @@
 package main
 
 import (
-	"log"
+	"context"
+	"database/sql"
+	"errors"
+	"log/slog"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
 	"time"
 
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
+	_ "github.com/jackc/pgx/v5/stdlib"
 )
 
-const dsn = "host=192.168.56.10 user=obed password=rahasia123 dbname=obedman_db port=5432 sslmode=disable TimeZone=Asia/Jakarta"
-
-var DB *gorm.DB
-
-// 1. Model Guestbook (Akan otomatis jadi tabel di PostgreSQL)
-type Guestbook struct {
-	ID        uint      `gorm:"primaryKey" json:"id"`
-	Name      string    `json:"name"`
-	Message   string    `json:"message"`
-	CreatedAt time.Time `json:"created_at"`
-}
-
 func main() {
-	var err error
-	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if err != nil {
-		log.Fatal("Gagal konek ke database:", err)
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
+	if err := run(logger); err != nil {
+		// Driver errors can contain credentials; run returns only controlled messages.
+		logger.Error("application stopped", "reason", err.Error())
+		os.Exit(1)
 	}
-	log.Println("Database PostgreSQL Connected!")
-
-	// 2. AutoMigrate: Bikin tabel otomatis kalau belum ada
-	DB.AutoMigrate(&Guestbook{})
-	log.Println("Migrasi tabel Guestbook selesai!")
-
-	app := fiber.New()
-
-	app.Static("/", "../dev/dist")
-
-	app.Use(cors.New(cors.Config{
-		AllowOrigins: "http://localhost:4321", // Mengizinkan Astro mengakses API
-	}))
-
-	app.Get("/api/health", func(c *fiber.Ctx) error {
-		return c.JSON(fiber.Map{"status": "ok", "message": "Backend Go Obedman siap tempur!"})
-	})
-
-	// 3. Endpoint GET: Ambil semua pesan, urutkan dari yang terbaru
-	app.Get("/api/guestbook", func(c *fiber.Ctx) error {
-		var messages []Guestbook
-		DB.Order("created_at desc").Find(&messages)
-		return c.JSON(messages)
-	})
-
-	// 4. Endpoint POST: Simpan pesan baru
-	app.Post("/api/guestbook", func(c *fiber.Ctx) error {
-		entry := new(Guestbook)
-		if err := c.BodyParser(entry); err != nil {
-			return c.Status(400).JSON(fiber.Map{"error": "Input tidak valid"})
+}
+func run(logger *slog.Logger) error {
+	cfg, err := loadConfig()
+	if err != nil {
+		return err
+	}
+	db, err := sql.Open("pgx", cfg.DatabaseURL)
+	if err != nil {
+		return errors.New("database configuration rejected")
+	}
+	defer db.Close()
+	db.SetMaxOpenConns(10)
+	db.SetMaxIdleConns(5)
+	db.SetConnMaxLifetime(30 * time.Minute)
+	db.SetConnMaxIdleTime(5 * time.Minute)
+	ctx, cancel := context.WithTimeout(context.Background(), queryTimeout)
+	err = db.PingContext(ctx)
+	cancel()
+	if err != nil {
+		return errors.New("database unavailable")
+	}
+	store := &postgresStore{db: db}
+	if len(os.Args) > 1 {
+		switch os.Args[1] {
+		case "migrate":
+			if len(os.Args) != 2 {
+				return errors.New("usage: obedman-api migrate")
+			}
+			ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
+			defer cancel()
+			if err := migrate(ctx, db); err != nil {
+				return errors.New("migration failed; inspect schema with restricted operator access")
+			}
+			logger.Info("migrations complete")
+			return nil
+		case "moderate":
+			return moderate(store, os.Args[2:], logger)
+		default:
+			return errors.New("unknown command; use migrate or moderate")
 		}
-		if entry.Name == "" || entry.Message == "" {
-			return c.Status(400).JSON(fiber.Map{"error": "Nama dan pesan wajib diisi"})
+	}
+	ctx, cancel = context.WithTimeout(context.Background(), queryTimeout)
+	err = store.Ready(ctx)
+	cancel()
+	if err != nil {
+		return errors.New("database schema unavailable; run migrate with migration role")
+	}
+	csp, err := staticCSP(cfg.StaticDir)
+	if err != nil {
+		return errors.New("static build unavailable; build frontend and check STATIC_DIR")
+	}
+	server := &http.Server{Addr: cfg.ListenAddr, Handler: newHandler(store, cfg, logger, csp),
+		ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 10 * time.Second,
+		WriteTimeout: 15 * time.Second, IdleTimeout: 60 * time.Second, MaxHeaderBytes: 16 << 10}
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
+	done := make(chan error, 1)
+	go func() { done <- server.ListenAndServe() }()
+	logger.Info("server listening", "address", cfg.ListenAddr)
+	select {
+	case err := <-done:
+		if !errors.Is(err, http.ErrServerClosed) {
+			return errors.New("HTTP listener failed")
 		}
-
-		DB.Create(&entry)
-		return c.Status(201).JSON(entry)
-	})
-
-	log.Println("Server Go berjalan di port 3030")
-	log.Fatal(app.Listen(":3030"))
+	case <-ctx.Done():
+		shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		if err := server.Shutdown(shutdownCtx); err != nil {
+			_ = server.Close()
+			return errors.New("HTTP shutdown deadline exceeded")
+		}
+	}
+	return nil
 }
